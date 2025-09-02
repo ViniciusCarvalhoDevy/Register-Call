@@ -1,0 +1,65 @@
+{% extends "global/base.html" %}
+
+{% load static %}
+{% block titlePage %}VC|Login{% endblock titlePage %}
+
+
+{% block headPage %} 
+    <link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+{% endblock headPage %}
+
+
+    {% block contentPage %} 
+        <main class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Container principal e card de login -->
+    <div class="login-card bg-white p-8 md:p-12 rounded-2xl w-full max-w-md">
+        <!-- Título principal -->
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">Gestor de Chamadas</h1>
+        <p class="text-center text-gray-500 mb-8">Faça login para continuar</p>
+
+        <!-- Formulário de login -->
+        <form id="loginForm" method="post" class="space-y-6">
+            {% csrf_token %}
+            {% include 'login/formsLogin.html' %}
+
+                <div class="flex items-center justify-between mt-2">
+                    <div class="flex items-center">
+                        <input id="passwordview" name="passwordview" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer">
+                        <label for="passwordview" class="ml-2 block text-sm text-gray-900">
+                            Ver senha
+                        </label>
+                    </div>
+
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                            Esqueceu a senha?
+                        </a>
+                    </div>
+                </div>
+            
+
+            <!-- Botão de login -->
+            <div>
+                <button type="submit" class="btn-primary w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Entrar
+                </button>
+            </div>
+
+            <!-- Link para cadastro
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Não tem uma conta?
+                <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                    Cadastre-se agora
+                </a>
+            </p> -->
+        </form>
+    </div>
+
+</main>
+    {% endblock contentPage %}
+    {% block scriptPage %} 
+        <script src="{% static 'js/login.js' %}"></script>
+    {% endblock scriptPage %}
+
