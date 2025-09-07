@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import CompanyView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-
+    path('registerCompany/', login_required(CompanyView.as_view()), name='registerCompany'),
 ]

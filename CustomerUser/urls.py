@@ -16,12 +16,13 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import LoginView, HomeView,LogoutView,RegisterPainel
+from .views import LoginView, HomeView,LogoutView,RegisterPainel,CallRegisterView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('', LoginView.as_view(), name='login'),
     path('home',login_required(HomeView.as_view()), name='home'),
     path('registerPainel',login_required(RegisterPainel.as_view()), name='registerPainel'),
+    path('callRegister',CallRegisterView.as_view(), name='callRegister'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]

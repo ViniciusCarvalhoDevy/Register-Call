@@ -6,7 +6,8 @@
                     </div>
                     {{ field }}
                 </div>
+                {{ field.errors }}
             </div>
      {# Exibe o campo HTML (input, textarea, etc.) #}
-    {{ field.errors }} {# Exibe erros de validação associados ao campo #}
+     {# Exibe erros de validação associados ao campo #}
 {% endfor %}

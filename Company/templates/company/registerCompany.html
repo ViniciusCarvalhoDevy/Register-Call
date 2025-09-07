@@ -4,7 +4,7 @@
 {% block titlePage %} VC| Register {% endblock titlePage %}
 
 {% block headPage %}
-    <link rel="stylesheet" href=" {% static 'css/demandRegister.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/registerCompany.css' %}">
     <script src="https://cdn.tailwindcss.com"></script>
 {% endblock headPage %}
         
@@ -12,7 +12,7 @@
     {% include "global/navBar.html" %}
     <main class="containerMain" id="containerMain">
         <section class="containerPainelTitle" id="containerPainelTitle">
-            <h1 class="titlePainel" id="titlePainel">Cadastre suas Demanda</h1>
+            <h1 class="titlePainel" id="titlePainel">Cadastre as Empresas que Atende</h1>
         </section>
        {% if messages %}
             <div class="messages">
@@ -29,7 +29,7 @@
                 <div class="formContainer">
                     {% include "global/forms.html" with form=form %}
                 </div>
-                <button type="submit" class="btnSubmit btn-primary w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Cadastrar Demanda</button>
+                <button type="submit" class="btnSubmit btn-primary w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Cadastrar Empresa</button>
             </form>
 
         </section>
