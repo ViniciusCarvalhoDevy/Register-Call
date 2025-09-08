@@ -18,4 +18,4 @@ class CallRegister(models.Model):
     observation = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.customer_name} - {self.company.name} - {self.demand.name}"
+        return f"{self.collaborator} - {self.company.name} - {self.demand.description}"

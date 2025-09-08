@@ -33,6 +33,9 @@ class HomeView(TemplateView ):
 
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
+        qtdCalls= CallRegister.objects.filter(user__user=self.request.user).count()
+        
+        context['qtdCalls'] = qtdCalls
     
         return context
 
@@ -59,12 +62,11 @@ class CallRegisterView(FormView):
         observation = form.cleaned_data.get('observation')
         call = createCallRegister(self.request.user,dateCall, compamy, demand, colaborator, observation)
         if call is not None:
-            call.save()
             messages.add_message(self.request, messages.SUCCESS, 'Chamado cadastrado com sucesso!')
         return redirect('callRegister')
     
     def form_invalid(self, form):
-        
+        messages.add_message(self.request, messages.ERROR, 'Erro ao cadastrar o chamado. Verifique os dados informados.')
         return super().form_invalid(form)
     
 class LogoutView(TemplateView):
@@ -73,15 +75,18 @@ class LogoutView(TemplateView):
         logout(request)
         return redirect('login')
 
+
+
+
+#Funcitions
 def createCallRegister(userAuth,dateCallParam, companyId, demandId, colaboratorParam, observationParam):
     demand = Demand.objects.get(id=demandId)
-    company = Company.objects.get(id=companyId)     
-    print(demand)
-    print(company)
+    company = Company.objects.get(id=companyId)  
+    customerUser = CustomerUser.objects.get(user=userAuth)   
     try:
-        call = CallRegister.objects.create(user=userAuth,dateCall=dateCallParam, company=company, demand=demand, collaborator=colaboratorParam, observation=observationParam)
-        call.asave(commit=False)
+        call = CallRegister.objects.create(user=customerUser,dateCall=dateCallParam, company=company, demand=demand, collaborator=colaboratorParam, observation=observationParam)
+        call.save()
     except Exception as e:
-        raise ValueError("Erro ao criar o chamado") 
+        raise ValueError("Erro ao criar o chamado. Erro: " + str(e)) 
     return call
     

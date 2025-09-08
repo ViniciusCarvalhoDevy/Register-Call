@@ -55,7 +55,8 @@ main .containerPainel > form {
     align-items: center;
 }
 main .containerPainel  .formContainer{
-    width: 50%;
+    min-width: fit-content;
+    max-width: 1000px;
     height: fit-content;
     display: flex;
     flex-wrap: wrap;
