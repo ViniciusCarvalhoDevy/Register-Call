@@ -33,17 +33,20 @@ main .containerPainelTitle {
     align-items: center;
 }
 main .containerPainel{
-    width: 50%;
+    width: 60%;
     height: 150px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    margin: 1rem;
 
 }
 
 main .containerPainel .containerCards{
     width: 45%;
+    min-width: 150px;
+    max-width: 360px;
     height: 50%;
     display: flex;
     justify-content: space-evenly;
@@ -53,6 +56,7 @@ main .containerPainel .containerCards{
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    margin: 0.5rem;
 
 }
 main .containerPainel .containerCards:hover {
@@ -129,4 +133,82 @@ main .containerButton:hover{
 
 main .containerButton svg{
     margin-right: 0.5rem;
+}
+@media (max-width: 1037px) {
+
+    main .containerPainel{
+        width: 90%;
+    }
+
+}
+@media (max-width: 645px) {
+main .containerPainel .containerCards #containerIcon1 {
+    width: 50px;
+    height: 50px;
+    margin-right: 0.5rem;
+
+}
+main .containerPainel .containerCards #containerIcon2 {
+    width: 50px;
+    height: 50px;
+    margin-right: 0.5rem;
+}
+}
+@media (max-width: 434px) {
+main .containerPainelTitle {
+    width: 90%;
+    text-align: center;
+    justify-content: center;
+}
+}
+@media (max-width: 256px) {
+main .containerButton{
+    width: 25%;
+    min-width: fit-content;
+    height: fit-content;
+    padding: 0.3rem;
+    flex-direction: column;
+    font-size: small;
+
+    
+}
+}
+@media (max-width: 230px) {
+main .containerButton{
+    width: 25%;
+    min-width: fit-content;
+    height: fit-content;
+    padding: 0.3rem;
+    flex-direction: column;
+    font-size: small;
+
+    
+}main .containerPainel{
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem;
+
+}
+
+main .containerPainel .containerCards{
+    width: fit-content;
+    min-width: none;
+    max-width: none;
+    height: fit-content;
+}
+main .containerPainel .containerCards{
+    flex-direction: column;
+    min-width: 90%;
+
+}
+main .containerPainel .containerCards .containerInfo {
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    text-align: center;
+}
 }
