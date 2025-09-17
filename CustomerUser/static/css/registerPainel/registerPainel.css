@@ -142,3 +142,73 @@ main .containerButton:hover{
 main .containerButton svg{
     margin-right: 0.5rem;
 }
+
+@media (max-width: 1271px) {  
+    main .containerPainelTitle {
+        width: 80%;
+        text-align: center;
+    }
+    main .containerPainel{
+        width: 80%;
+
+
+    }
+
+    
+}
+@media (max-width: 220px) {  
+    main .containerPainelTitle {
+        width: 90%;
+        min-width: none ;
+        flex-wrap: wrap;
+    }
+    main .containerPainelTitle > h1 {
+        font-size: x-large;
+    }
+    main .containerPainel{
+        width: 95%;
+        min-width: none ;
+    }
+    main .containerPainel .containerCards{
+        width: fit-content;
+        height: fit-content;
+        padding: 1rem;
+        min-width: none ;
+        min-height: none;
+       
+    }
+main .containerPainel .containerCards #containerIcon1 {
+    width: 50px;
+    min-width: 20px;
+    height: 50px;
+    min-height: 20px;
+    margin-right: 0.3rem;
+
+}
+main .containerPainel .containerCards #containerIcon2 {
+    width: 50px;
+    min-width: 20px;
+    height: 50px;
+    min-height: 20px;
+    margin-right: 0.3rem;
+
+    /*00A042*/
+}
+main .containerPainel .containerCards #containerIcon3 {
+    width: 50px;
+    min-width: 20px;
+    height: 50px;
+    min-height: 20px;
+    margin-right: 0.3rem;
+
+    /*00A042*/
+}
+main .containerPainel .containerCards .containerInfo {
+    width: fit-content;
+    height: fit-content;
+    min-width: none ;
+    min-height: none ;
+    flex-wrap: wrap;
+    
+}
+}

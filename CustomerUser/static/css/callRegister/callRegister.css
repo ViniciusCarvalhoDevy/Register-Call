@@ -40,6 +40,7 @@ main .containerPainelTitle .titlePainel {
 }
 main .containerPainel{
     width: 90%;
+    max-width: 1000px;
     height: 400px;
     display: flex;
     justify-content: space-around;

@@ -33,9 +33,10 @@ class HomeView(TemplateView ):
 
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
-        qtdCalls= CallRegister.objects.filter(user__user=self.request.user).count()
-        
-        context['qtdCalls'] = qtdCalls
+        callRegister = CallRegister.objects.filter(user__user=self.request.user)
+        context['qtdCalls'] = callRegister.count()
+        demands = Demand.objects.all()
+
     
         return context
 
@@ -52,6 +53,12 @@ class CallRegisterView(FormView):
     template_name = 'callRegister/callRegister.html'
     form_class = CallRegisterForm
     success_url = '/'
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        context['form'] = CallRegisterForm()
+
+        return context
+    
     
     def form_valid(self, form):
         
@@ -60,6 +67,7 @@ class CallRegisterView(FormView):
         demand = form.cleaned_data.get('demand')
         colaborator = form.cleaned_data.get('colaborator')
         observation = form.cleaned_data.get('observation')
+        
         call = createCallRegister(self.request.user,dateCall, compamy, demand, colaborator, observation)
         if call is not None:
             messages.add_message(self.request, messages.SUCCESS, 'Chamado cadastrado com sucesso!')
