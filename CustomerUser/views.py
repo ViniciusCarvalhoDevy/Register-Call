@@ -7,6 +7,7 @@ from Company.models import Company
 from Demand.models import Demand
 from .forms import LoginForm,CallRegisterForm
 from django.contrib import messages
+from datetime import date
 # Create your views here.
 
 class LoginView(FormView):
@@ -34,7 +35,7 @@ class HomeView(TemplateView ):
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
         callRegister = CallRegister.objects.filter(user__user=self.request.user)
-        context['qtdCalls'] = callRegister.count()
+        context['qtdCalls'] = callRegister.filter(dateCall=date.today()).count()
         demands = Demand.objects.all()
 
     
@@ -67,7 +68,7 @@ class CallRegisterView(FormView):
         demand = form.cleaned_data.get('demand')
         colaborator = form.cleaned_data.get('colaborator')
         observation = form.cleaned_data.get('observation')
-        
+        print("DADOS: ",dateCall, compamy, demand, colaborator, observation)
         call = createCallRegister(self.request.user,dateCall, compamy, demand, colaborator, observation)
         if call is not None:
             messages.add_message(self.request, messages.SUCCESS, 'Chamado cadastrado com sucesso!')
@@ -88,7 +89,7 @@ class LogoutView(TemplateView):
 
 #Funcitions
 def createCallRegister(userAuth,dateCallParam, companyId, demandId, colaboratorParam, observationParam):
-    demand = Demand.objects.get(id=demandId)
+    demand = Demand.objects.get(description=demandId)
     company = Company.objects.get(id=companyId)  
     customerUser = CustomerUser.objects.get(user=userAuth)   
     try:

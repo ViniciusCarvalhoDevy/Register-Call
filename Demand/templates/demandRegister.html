@@ -27,21 +27,13 @@
             <form method="post" class="space-y-6 "> 
                 {% csrf_token %}
                 <div class="formContainer">
-                    {% include "global/forms.html" with form=form %}
-                   
-                    
-                </div> 
-                <div class="containerCheckbox">
-                    <input type="checkbox" id='check' name="next" value="{{ next }}">
-                    <label for="checkbox" class="ml-2 block text-sm text-gray-900">Área já cadastrada?</label>
+                    {% include "global/forms.html" with form=form %}    
                 </div>
-                  
-                
                 <button type="submit" class="btnSubmit btn-primary w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Cadastrar Demanda</button>
             </form>
 
         </section>
         
     </main>
-    
+    <script src="{% static 'js/demandRegister.js' %}"></script>
 {% endblock contentPage %}
