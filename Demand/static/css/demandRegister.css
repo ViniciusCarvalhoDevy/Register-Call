@@ -60,7 +60,7 @@ main .containerPainel  .formContainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
 }
 
 
@@ -103,7 +103,16 @@ main .messages{
 .inputs{
     margin: 0.5rem;
 }
-
+.containerCheckbox #check{
+    cursor: pointer;
+}
+.containerCheckbox{
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 

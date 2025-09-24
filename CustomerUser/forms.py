@@ -26,12 +26,13 @@ class CallRegisterForm(forms.ModelForm):
 
         widgets = {
             'dateCall': forms.DateInput(attrs={
-                'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
+                'class': 'inputs cursor block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
                 'type': 'date',
                 'value': date.today(),
             }),
             'company': forms.Select(attrs={
                 'class': 'inputs selects block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
+
             }),
             'collaborator': forms.TextInput(attrs={
                 'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
@@ -45,8 +46,16 @@ class CallRegisterForm(forms.ModelForm):
                 'cols': 50,
                 'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
                 'placeholder': 'ex: Condição Especial...',
-            'value': forms.NumberInput(attrs={'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'R$ 0,00'}),
             }),
+             'value': forms.NumberInput(attrs={'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'R$ 0,00'}),
+        }
+        labels = {
+            'dateCall': 'Data do Contato',
+            'company': 'Empresa',
+            'collaborator': 'Colaborador',
+            'demand': 'Demanda',
+            'observation': 'Observação',
+            'value': 'Valor',
         }
 
     def __init__(self, *args, **kwargs):

@@ -163,4 +163,6 @@ main .messages{
 .inputs{
     margin: 0.5rem;
 }
-
+.cursor{
+    cursor: pointer;
+}
