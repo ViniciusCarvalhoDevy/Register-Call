@@ -65,5 +65,5 @@ class CallRegisterForm(forms.ModelForm):
         self.fields['demand'].empty_label = 'Selecione uma demanda'
         
         self.fields['company'].queryset = Company.objects.all().order_by('name')
-        self.fields['demand'].queryset = [(str(id) + '-' + name + '-' + descrip) for (id,name,descrip) in Demand.objects.all().values_list('id','name','description').order_by('description')]
+        self.fields['demand'].queryset = Demand.objects.values_list('description', flat=True).order_by('description')
         
