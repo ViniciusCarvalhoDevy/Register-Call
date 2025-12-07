@@ -58,11 +58,12 @@ nav .header h1{
         padding: 1rem 1rem;
     }
 }
-@media (max-width: 204px) {
+@media (max-width: 300px) {
     nav {
         flex-direction: column;
         height: auto;
         padding: 0.5rem 0.5rem;
+        width: 300px;
     }
     nav .containerIcons{
         width: auto;

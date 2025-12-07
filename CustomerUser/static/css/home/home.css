@@ -161,54 +161,10 @@ main .containerPainelTitle {
     justify-content: center;
 }
 }
-@media (max-width: 256px) {
-main .containerButton{
-    width: 25%;
-    min-width: fit-content;
-    height: fit-content;
-    padding: 0.3rem;
-    flex-direction: column;
-    font-size: small;
 
-    
-}
-}
-@media (max-width: 230px) {
-main .containerButton{
-    width: 25%;
-    min-width: fit-content;
-    height: fit-content;
-    padding: 0.3rem;
-    flex-direction: column;
-    font-size: small;
+@media (max-width: 300px) {
+    main {
+        width: 300px;
+    }
 
-    
-}main .containerPainel{
-    width: 90%;
-    height: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    margin: 1rem;
-
-}
-
-main .containerPainel .containerCards{
-    width: fit-content;
-    min-width: none;
-    max-width: none;
-    height: fit-content;
-}
-main .containerPainel .containerCards{
-    flex-direction: column;
-    min-width: 90%;
-
-}
-main .containerPainel .containerCards .containerInfo {
-    width: fit-content;
-    height: fit-content;
-    align-items: center;
-    text-align: center;
-}
 }

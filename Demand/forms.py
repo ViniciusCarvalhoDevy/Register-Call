@@ -5,15 +5,15 @@ class DemandFormModel(forms.ModelForm):
 
     class Meta:
         model = Demand
-        fields = ['name', 'description', 'value']
+        fields = ['name', 'description']
         
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'ex: Tecnologia da informação (TI)'}),  
+            'name': forms.Select(attrs={'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'ex: Tecnologia da informação (TI)'}, choices=[('', 'Selecione a área de atuação'), ('Tecnologia da informação (TI)', 'Tecnologia da informação (TI)'), ('Marketing', 'Marketing'), ('Recursos Humanos (RH)', 'Recursos Humanos (RH)'), ('Financeiro', 'Financeiro'), ('Vendas', 'Vendas'), ('Atendimento ao Cliente', 'Atendimento ao Cliente'), ('Logística', 'Logística'), ('Produção', 'Produção'), ('Jurídico', 'Jurídico'), ('Pesquisa e Desenvolvimento (P&D)', 'Pesquisa e Desenvolvimento (P&D)'), ('Outros', 'Outros')]),  
             'description': forms.Textarea(attrs={'rows': 1, 'cols': 50,'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'ex: Infraestrutura de TI'}),  
-            'value': forms.NumberInput(attrs={'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'R$ 0,00'}),
+           # 'value': forms.NumberInput(attrs={'class': 'inputs block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm', 'placeholder': 'R$ 0,00'}),
         }
         labels  = {
             'name': 'Área de Atuação',
             'description': 'Descrição',
-            'value': 'Valor Por cada Demanda',
         }
+
