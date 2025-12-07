@@ -61,26 +61,26 @@ class CallRegisterView(FormView):
         return context
     
     
-    def form_valid(self, form):
-        
+    def form_valid(self, form):        
         dateCall = form.cleaned_data.get('dateCall')
         compamy = form.cleaned_data.get('company')
         demand = form.cleaned_data.get('demand')
-        colaborator = form.cleaned_data.get('colaborator')
+        colaborator = form.cleaned_data.get('collaborator')
         observation = form.cleaned_data.get('observation')
-        print("DADOS: ",dateCall, compamy, demand, colaborator, observation)
-        call = createCallRegister(self.request.user,dateCall, compamy, demand, colaborator, observation)
-        if call is not None:
-            messages.add_message(self.request, messages.SUCCESS, 'Chamado cadastrado com sucesso!')
+        numberValue = form.cleaned_data.get('value')
+        userAuth = self.request.user
+        print("DADOS VALIDOS: ",dateCall, compamy, demand, colaborator, observation,numberValue)
+        call = createCallRegister(userAuth,dateCall, compamy, demand, colaborator, observation,numberValue )
+        try:
+            if call is not None:
+              
+                messages.add_message(self.request, messages.SUCCESS, 'Chamado cadastrado com sucesso!')
+        except Exception as e:
+            print("ERRO AO SALVAR CALLREGISTER: ", str(e))
+            messages.add_message(self.request, messages.ERROR, 'Erro ao cadastrar o chamado.')
         return redirect('callRegister')
     
     def form_invalid(self, form):
-        dateCall = form.cleaned_data.get('dateCall')
-        compamy = form.cleaned_data.get('company')
-        demand = form.cleaned_data.get('demand')
-        colaborator = form.cleaned_data.get('colaborator')
-        observation = form.cleaned_data.get('observation')
-        print("DADOS: ",dateCall, compamy, demand, colaborator, observation)
         messages.add_message(self.request, messages.ERROR, 'Erro ao cadastrar o chamado. Verifique os dados informados.')
         return super().form_invalid(form)
     
@@ -94,14 +94,27 @@ class LogoutView(TemplateView):
 
 
 #Funcitions
-def createCallRegister(userAuth,dateCallParam, companyId, demandDescription, colaboratorParam, observationParam):
-    demand = Demand.objects.get(description=demandDescription)
-    company = Company.objects.get(name=companyId)
+def createCallRegister(userAuth,dateCallParam, companyName, demandDescription, colaboratorParam, observationParam, numberValueParam):
+    #demandDescriptionProcessed = demandDescription.split(" - ").get(1)
+    
+    print("DEMAND DESCRIPTION PROCESSED: ", type(demandDescription))
+    print("Company DESCRIPTION PROCESSED: ", type(companyName))
+    print(demandDescription)
+   
+     #demand = Demand.objects.get(description=demandDescription)
+     #company = Company.objects.get(name=companyName)
     customerUser = CustomerUser.objects.get(user=userAuth)   
     try:
-        call = CallRegister.objects.create(user=customerUser,dateCall=dateCallParam, company=company, demand=demand, collaborator=colaboratorParam, observation=observationParam)
-        call.save()
+        callRegister = CallRegister()
+        callRegister.dateCall = dateCallParam
+        callRegister.company = companyName
+        callRegister.demand = demandDescription
+        callRegister.collaborator = colaboratorParam
+        callRegister.observation = observationParam
+        callRegister.value = numberValueParam
+
+        return callRegister
     except Exception as e:
-        raise ValueError("Erro ao criar o chamado. Erro: " + str(e)) 
-    return call
+        raise ValueError("Erro ao criar o objeto CallRegister. Erro: " + str(e)) 
+    return None
     
