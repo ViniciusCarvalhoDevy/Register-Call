@@ -92,6 +92,9 @@ class ReportsView(TemplateView):
     
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
+        context['demands'] = Demand.objects.all().order_by('description')
+        context['companys'] = Company.objects.all().order_by('name')
+        context['calls'] = CallRegister.objects.filter(user__user=self.request.user).order_by('-dateCall')
         return context
 
 

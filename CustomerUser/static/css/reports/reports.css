@@ -33,63 +33,30 @@ main .containerPainelTitle {
     align-items: center;
 }
 main .containerPainel{
-    width: 60%;
-    height: 150px;
+    width: 50%;
+    height: 170px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin: 1rem;
 
 }
 
 main .containerPainel .containerCards{
-    width: 45%;
+    width: 50%;
     min-width: 150px;
-    max-width: 360px;
+    max-width: 460px;
     height: 50%;
     display: flex;
-    justify-content: space-evenly;
+    padding-left: 20px;
+    justify-content: flex-start;
     align-items: center;
     border-radius: 10px;
     min-width: 200px;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-    margin: 0.5rem;
 
-}
-main .containerPainel .containerCards:hover {
-    transform: scale(1.08); 
-    transition: all 0.4s ease-in-out;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-}
-main .containerPainel .containerCards #containerIcon1 {
-    width: 60px;
-    min-width: 40px;
-    height: 60px;
-    min-height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #DBEAFE;
-    margin-right: 1rem;
-    margin-left: 0.5rem;
-}
-main .containerPainel .containerCards #containerIcon2 {
-    width: 60px;
-    min-width: 40px;
-    height: 60px;
-    min-height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #DCFCE7;
-    margin-right: 1rem;
-    margin-left: 0.5rem;
-    /*00A042*/
 }
 
 main .containerPainel .containerCards .containerInfo {
@@ -108,11 +75,58 @@ main .containerPainel .containerCards .containerInfo .infoTitle{
 main .containerPainel .containerCards .containerInfo .info{
     font-size: x-large;
 }
-main .containerButton{
+
+
+main .filter{
+        width: 50%;
+        min-width: 150px;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        height: fit-content;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-radius: 10px;
+        min-width: 200px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-top: 2rem;
+}
+main .filter select{
     width: 25%;
-    min-width: 250px;
-    height: 42px;
-    margin: 1rem;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    background-color: white;
+    color: #4338CA;
+    border: 1px solid #4338CA;
+    cursor: pointer;
+
+}
+
+main .filter input{
+    width: 25%;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    background-color: white;
+    color: #4338CA;
+    border: 1px solid #4338CA;
+
+}
+
+main .filter button{
+    width: 10%;
+    height: 35px;
+    border-radius: 40px;
+    outline: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,20 +134,27 @@ main .containerButton{
     color: white;
     font-weight: 600;
     border-radius: 8px;
+    border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, box-shadow 0.3s,transform 0.2s;
     cursor: pointer;
-}   
-
-main .containerButton:hover{
-    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
-    background-color: #3e52ec;
-    box-shadow: 0 6px 8px rgba(77, 96, 231, 0.2), 0 2px 4px rgba(77, 96, 231, 0.15);
+}
+main .filter button:hover{
+    background-color: #fff;
+    color: #4338CA;
+    border: 1px solid #4338CA;
+    transition: all 0.6s ease-in-out;
 }
 
-main .containerButton svg{
-    margin-right: 0.5rem;
+main .tableReports{
+    width: 50%;
+    min-width: 300px;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
+
 @media (max-width: 1037px) {
 
     main .containerPainel{
