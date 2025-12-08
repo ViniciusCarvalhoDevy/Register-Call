@@ -7,7 +7,7 @@ class CustomerUser(models.Model):
     phone = models.CharField(max_length=15, blank=True, null=True)
     
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
 
 class CallRegister(models.Model):
     collaborator = models.CharField(max_length=255)

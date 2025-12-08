@@ -11,7 +11,7 @@
     {% include "global/navBar.html" %}
     <main class="containerMain" id="containerMain">
         <section class="containerPainelTitle" id="containerPainelTitle">
-            <h1 class="titlePainel" id="titlePainel">Painel de Controle Diário</h1>
+            <h1 class="titlePainel" id="titlePainel">Relatórios de Chamandas</h1>
         </section>
         <section class="containerPainel" id="containerPainel">
 
@@ -21,7 +21,7 @@
                 </div>
                 <div class="containerInfo" id="containerInfo">
                     <span class="infoTitle" id="infoTitle">
-                        Total de Chamadas
+                        Total de Chamadas de Hoje
                     </span>
                     <span class="info" id="info">{{qtdCalls}}</span>
                 </div>
@@ -32,7 +32,7 @@
                 </div>
                     <div class="containerInfo" id="containerInfo">
                         <span class="infoTitle" id="infoTitle">
-                            Ganhos Totais
+                            Ganhos Totais Hoje
                         </span>
                         <span class="info" id="info">R$ {{totalValue|floatformat:2}}</span>
                     </div>

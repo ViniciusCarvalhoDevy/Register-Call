@@ -8,6 +8,7 @@ from Demand.models import Demand
 from .forms import LoginForm,CallRegisterForm
 from django.contrib import messages
 from datetime import date
+from django.db import models
 # Create your views here.
 
 class LoginView(FormView):
@@ -22,6 +23,8 @@ class LoginView(FormView):
         user = authenticate(self.request, username=userCustomer, password=password)
         if user is not None:
             login(self.request, user)
+            self.request.session['userAuthCustomerID'] = userCustomer.id
+            self.request.session['userAuthDefaultID'] = user.id
             return redirect('home')
         else:
             return HttpResponse("Invalid credentials")  #TODO: Change to error message in form
@@ -36,9 +39,7 @@ class HomeView(TemplateView ):
         context = super().get_context_data(**kwargs)
         callRegister = CallRegister.objects.filter(user__user=self.request.user)
         context['qtdCalls'] = callRegister.filter(dateCall=date.today()).count()
-        demands = Demand.objects.all()
-
-    
+        context['totalValue'] = callRegister.filter(dateCall=date.today()).aggregate(models.Sum('value'))['value__sum'] or 0.00
         return context
 
 class RegisterPainel(TemplateView):
@@ -48,8 +49,6 @@ class RegisterPainel(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-
-    
 class CallRegisterView(FormView):
     template_name = 'callRegister/callRegister.html'
     form_class = CallRegisterForm
@@ -57,9 +56,7 @@ class CallRegisterView(FormView):
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
         context['form'] = CallRegisterForm()
-
         return context
-    
     
     def form_valid(self, form):        
         dateCall = form.cleaned_data.get('dateCall')
@@ -68,12 +65,12 @@ class CallRegisterView(FormView):
         colaborator = form.cleaned_data.get('collaborator')
         observation = form.cleaned_data.get('observation')
         numberValue = form.cleaned_data.get('value')
-        userAuth = self.request.user
-        print("DADOS VALIDOS: ",dateCall, compamy, demand, colaborator, observation,numberValue)
+        userAuth = self.request.session.get('userAuthCustomerID')
+
         call = createCallRegister(userAuth,dateCall, compamy, demand, colaborator, observation,numberValue )
         try:
             if call is not None:
-              
+                call.save()
                 messages.add_message(self.request, messages.SUCCESS, 'Chamado cadastrado com sucesso!')
         except Exception as e:
             print("ERRO AO SALVAR CALLREGISTER: ", str(e))
@@ -90,20 +87,17 @@ class LogoutView(TemplateView):
         logout(request)
         return redirect('login')
 
-
+class ReportsView(TemplateView):
+    template_name = 'reports/reports.html'
+    
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        return context
 
 
 #Funcitions
 def createCallRegister(userAuth,dateCallParam, companyName, demandDescription, colaboratorParam, observationParam, numberValueParam):
-    #demandDescriptionProcessed = demandDescription.split(" - ").get(1)
-    
-    print("DEMAND DESCRIPTION PROCESSED: ", type(demandDescription))
-    print("Company DESCRIPTION PROCESSED: ", type(companyName))
-    print(demandDescription)
-   
-     #demand = Demand.objects.get(description=demandDescription)
-     #company = Company.objects.get(name=companyName)
-    customerUser = CustomerUser.objects.get(user=userAuth)   
+    customerUser = CustomerUser.objects.get(user__id=userAuth)
     try:
         callRegister = CallRegister()
         callRegister.dateCall = dateCallParam
@@ -112,6 +106,7 @@ def createCallRegister(userAuth,dateCallParam, companyName, demandDescription, c
         callRegister.collaborator = colaboratorParam
         callRegister.observation = observationParam
         callRegister.value = numberValueParam
+        callRegister.user = customerUser
 
         return callRegister
     except Exception as e:
