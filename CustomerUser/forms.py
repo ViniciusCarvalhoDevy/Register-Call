@@ -58,11 +58,14 @@ class CallRegisterForm(forms.ModelForm):
             'value': 'Valor',
         }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, customer=None,**kwargs,):
         super().__init__(*args, **kwargs)
         # Setting a default empty choice.
         self.fields['company'].empty_label = 'Selecione uma empresa'
         self.fields['demand'].empty_label = 'Selecione uma demanda'
-        
-        self.fields['company'].queryset = Company.objects.all().order_by('name')
-        self.fields['demand'].queryset = Demand.objects.all().order_by('description')
+        if customer:
+            self.fields['company'].queryset = Company.objects.all().order_by('name').filter(id=customer)
+            self.fields['demand'].queryset = Demand.objects.all().order_by('description').filter(id=customer)
+        else:
+            self.fields['company'].queryset = Company.objects.none()
+            self.fields['demand'].queryset = Demand.objects.none()

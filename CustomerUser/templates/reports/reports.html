@@ -16,13 +16,13 @@
         <section class="filter" id="filter">
             <input type="date" name="filterDate" id="filterDate">
             <select name="filterDemands"  id="">
-                <option value="" disabled selected>Selecione a Demanda</option>
+                <option value="" selected>Selecione a Demanda</option>
                 {% for demand in demands %}
                     <option value="{{demand.id}}">{{demand.name}} - {{demand.description}}</option>
                 {% endfor %}
             </select>
             <select name="filterCompany"  id="">
-                <option value="" disabled selected>Selecione o Cliente</option>
+                <option value="" selected>Selecione o Cliente</option>
                 {% for company in companys %}
                     <option value="{{company.id}}">{{company.name}}</option>
                 {% endfor %}
@@ -76,8 +76,8 @@
                             <tr>
                         {% endfor %}
                     {% else %}
-                        <tr>
-                            <td colspan="6">Nenhum chamado encontrado para os filtros selecionados.</td>
+                        <tr class="noData">
+                            <td colspan="7">Nenhum chamado encontrado para os filtros selecionados.</td>
                         </tr>
                     {% endif %}
                 </tbody>

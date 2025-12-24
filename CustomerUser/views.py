@@ -55,7 +55,7 @@ class CallRegisterView(FormView):
     success_url = '/'
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
-        context['form'] = CallRegisterForm()
+        context['form'] = CallRegisterForm(customer=self.request.session.get('userAuthCustomerID'))
         return context
     
     def form_valid(self, form):        
@@ -94,13 +94,16 @@ class ReportsView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['demands'] = Demand.objects.all().order_by('description')
         context['companys'] = Company.objects.all().order_by('name')
-        context['calls'] = CallRegister.objects.filter(user__user=self.request.user).order_by('-dateCall')
+        context['calls'] = None
         return context
+    def get(self, request, *args, **kwargs):
+        
+        calls = CallRegister.objects.filter(user__user=self.request.user).order_by('-dateCall')
+        return super().get(request, *args, **kwargs)
 
 
 #Funcitions
 def createCallRegister(userAuth,dateCallParam, companyName, demandDescription, colaboratorParam, observationParam, numberValueParam):
-    customerUser = CustomerUser.objects.get(user__id=userAuth)
     try:
         callRegister = CallRegister()
         callRegister.dateCall = dateCallParam
@@ -109,7 +112,7 @@ def createCallRegister(userAuth,dateCallParam, companyName, demandDescription, c
         callRegister.collaborator = colaboratorParam
         callRegister.observation = observationParam
         callRegister.value = numberValueParam
-        callRegister.user = customerUser
+        callRegister.user = userAuth
 
         return callRegister
     except Exception as e:
