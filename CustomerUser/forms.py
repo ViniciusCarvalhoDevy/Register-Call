@@ -31,7 +31,7 @@ class CallRegisterForm(forms.ModelForm):
                 'value': date.today(),
             }),
             'company': forms.Select(attrs={
-                'class': 'inputs selects block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
+                'class': 'inputs selects block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm','autocomplete ': 'on',
 
             }),
             'collaborator': forms.TextInput(attrs={
@@ -39,7 +39,7 @@ class CallRegisterForm(forms.ModelForm):
                 'placeholder': 'ex: Vinicius Carvalho',
             }),
             'demand': forms.Select(attrs={
-                'class': 'inputs selects block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
+                'class': 'inputs selects block w-80 pl-3 pr-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm','autocomplete ': 'on',
             }),
             'observation': forms.Textarea(attrs={
                 'rows': 3,
@@ -58,14 +58,14 @@ class CallRegisterForm(forms.ModelForm):
             'value': 'Valor',
         }
 
-    def __init__(self, *args, customer=None,**kwargs,):
-        super().__init__(*args, **kwargs)
-        # Setting a default empty choice.
+    def __init__(self, *args, customer=None, **kwargs):
+        super().__init__(*args, **kwargs)  # O super() deve vir antes de configurar os campos
+        
+        # Configura os labels padrão
         self.fields['company'].empty_label = 'Selecione uma empresa'
         self.fields['demand'].empty_label = 'Selecione uma demanda'
+        # Só executa a consulta no banco se o 'customer' não for None
         if customer:
-            self.fields['company'].queryset = Company.objects.all().order_by('name').filter(id=customer)
-            self.fields['demand'].queryset = Demand.objects.all().order_by('description').filter(id=customer)
-        else:
-            self.fields['company'].queryset = Company.objects.none()
-            self.fields['demand'].queryset = Demand.objects.none()
+            self.fields['company'].queryset = Company.objects.filter(user_id=customer).order_by('name')
+            self.fields['demand'].queryset = Demand.objects.filter(user_id=customer).order_by('description')
+   

@@ -20,4 +20,4 @@ class CallRegister(models.Model):
     
 
     def __str__(self):
-        return f"{self.collaborator} - {self.company.name} - {self.demand.description}"
+        return f"{self.company.name} - {self.collaborator} - {self.demand.name} - {self.demand.description}"
