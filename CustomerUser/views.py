@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views.generic import FormView, TemplateView
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from .models import CustomerUser, CallRegister
 from Company.models import Company
@@ -30,7 +30,6 @@ class LoginView(FormView):
         if auth_user is not None:
             login(self.request, auth_user)
             # Store the CustomerUser id in session so forms can filter by it
-            print("Authenticated CustomerUser ID:", customer.id)
             self.request.session['userAuthCustomerID'] = customer.id
             return redirect('home')
         else:
@@ -81,7 +80,6 @@ class CallRegisterView(FormView):
         colaborator = form.cleaned_data.get('collaborator')
         observation = form.cleaned_data.get('observation')
         numberValue = form.cleaned_data.get('value')
-        print(dateCall, compamy, demand, colaborator, observation, numberValue)
         userAuth = self.request.session.get('userAuthCustomerID')
 
         call = createCallRegister(userAuth,dateCall, compamy, demand, colaborator, observation,numberValue )
@@ -124,11 +122,27 @@ class ReportsView(TemplateView):
         context['calls'] = None
         return context
     def get(self, request, *args, **kwargs):
-        
-        calls = CallRegister.objects.filter(user__user=self.request.user).order_by('-dateCall')
-        return super().get(request, *args, **kwargs)
-
-
+        userAuth = self.request.session.get('userAuthCustomerID')
+        callsRetorn = None
+        dataFilter = {
+            'dateCall': request.GET.get('filterDate'),
+            'demand_id': request.GET.get('filterDemands'),
+            'company_id': request.GET.get('filterCompany')  
+        }
+        filterGet = {chave: valor for chave, valor in dataFilter.items() if  valor not in [None, '']}
+        callsRetornUser = CallRegister.objects.filter(user_id=userAuth).order_by('-dateCall')
+        if callsRetornUser is not None:
+            callsRetorn = callsRetornUser.filter(**filterGet)
+            calls = self.get_context_data()
+            calls['calls'] = callsRetorn
+            calls['qtdCalls'] = callsRetorn.count()
+            totalValue = callsRetorn.aggregate(models.Sum('value'))['value__sum'] or 0.00
+            calls['totalValue'] = totalValue
+            calls['dateFilter'] = dataFilter['dateCall']
+            calls['filterDemands'] = dataFilter.get('demand_id', '')
+            calls['filterCompany'] = dataFilter.get('company_id', '')
+        return render(request, self.template_name, calls)
+    
 #Funcitions
 def createCallRegister(userAuth,dateCallParam, companyName, demandDescription, colaboratorParam, observationParam, numberValueParam):
     try:
