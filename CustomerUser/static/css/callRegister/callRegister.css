@@ -150,19 +150,24 @@ main .btnSubmit:hover{
 main .containerButton svg{
     margin-right: 0.5rem;
 }
-main .messages{
-    width: 20%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 8px;
 
-}
 .inputs{
     margin: 0.5rem;
 }
 .cursor{
     cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 363px) {
+
+    .inputs{
+        width: 200px !important;
+        transform: all 0.3s ease-in-out;
+    }
+}
+@media (max-width: 363px) {
+    main {
+        min-width: 297px;
+    }
 }

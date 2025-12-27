@@ -25,6 +25,7 @@ main {
     min-height: calc(100vh - 70px); /* Ajusta a altura para preencher a tela menos a altura da navbar */
     background-color: #f0f4f8;
     padding-top: 2rem;
+    
 }
 main .containerPainelTitle {
     width: 70%;
@@ -119,15 +120,14 @@ main .messages{
 
 
 
-@media (max-width: 370px) {
+@media (max-width: 375px) {
     .containerInput{
-
-        width: 90% !important;
         min-width: none !important;
         
     }
     .inputs{
-        width: 90% !important;
+        min-width: none !important;
+        width: 100% !important;
     }
     main .btnSubmit{
         width: fit-content;
@@ -139,6 +139,16 @@ main .messages{
     main .messages{
         width: 80%;
         font-size: small;
+    }
+    
+}
+@media (max-width: 321px) {
+     .inputs{
+        min-width: none !important;
+        width: 90% !important;
+    }
+    main {
+        min-width: 295px;
     }
     
 }

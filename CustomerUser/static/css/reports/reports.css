@@ -41,7 +41,7 @@ main .containerPainel{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #4338CA;
+
 
 }
 
@@ -159,11 +159,11 @@ main .filter #btnSeach:hover{
 main .tableReports{
     width: 50%;
     /*min-width: 300px;*/
+    overflow-x: auto;
     min-width: 955px;
     margin-bottom: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
 }
 .noData td{
     text-align: center;
@@ -212,7 +212,7 @@ main .tableReports{
 @media (max-width: 921px) {
     main .filter {
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
     }
     main .filter select{
@@ -222,30 +222,50 @@ main .tableReports{
         margin: 5px;
     }
 }
-@media (max-width: 645px) {
-main .containerPainel .containerCards #containerIcon1 {
-    width: 50px;
-    height: 50px;
-    margin-right: 0.5rem;
+@media (max-width: 478px) {
+    main .containerPainel .containerCards{
+        min-width: none;
+        height: fit-content;
+        width: fit-content;
+    }
+    main .containerPainel {
+        min-width: none;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
 
 }
-main .containerPainel .containerCards #containerIcon2 {
-    width: 50px;
-    height: 50px;
-    margin-right: 0.5rem;
-}
-}
-@media (max-width: 434px) {
+
+@media (max-width: 463px) {
 main .containerPainelTitle {
     width: 90%;
     text-align: center;
     justify-content: center;
 }
-}
+    main .containerPainel  #containerCards1 {
+    margin-right: 0.1rem;   
+    }
 
+
+}
+@media (max-width: 441px) {
+
+    main .containerPainel  {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        height: fit-content;
+    }
+    main .containerPainel  #containerCards1 {
+        margin-right: 0rem;
+        margin-bottom: 1rem;
+    }
+}
 @media (max-width: 300px) {
     main {
         width: 300px;
     }
+
 
 }
