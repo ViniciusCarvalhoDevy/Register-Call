@@ -156,7 +156,29 @@ main .containerButton svg{
 
     
 }
-@media (max-width: 220px) {  
+@media (max-width: 499px) {
+    main .containerPainel .containerCards{
+        width: 80%;
+        height: auto;
+        padding: 0.4rem;
+        margin: 0.1rem;
+        min-width: none ;
+        min-height: none;
+       
+    }
+    main .containerPainelTitle {
+        width: 80%;
+        min-width: none ;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+} 
+@media (max-width: 297px) { 
+    main {
+        min-width: 297px;
+    } 
     main .containerPainelTitle {
         width: 90%;
         min-width: none ;
@@ -170,45 +192,46 @@ main .containerButton svg{
         min-width: none ;
     }
     main .containerPainel .containerCards{
-        width: fit-content;
-        height: fit-content;
-        padding: 1rem;
+        width: 90%;
+        height: auto;
+        padding: 0.8rem;
+        margin: 0.1rem;
         min-width: none ;
         min-height: none;
        
     }
-main .containerPainel .containerCards #containerIcon1 {
-    width: 50px;
-    min-width: 20px;
-    height: 50px;
-    min-height: 20px;
-    margin-right: 0.3rem;
+    main .containerPainel .containerCards #containerIcon1 {
+        width: 50px;
+        min-width: 20px;
+        height: 50px;
+        min-height: 20px;
+        margin-right: 0.3rem;
 
-}
-main .containerPainel .containerCards #containerIcon2 {
-    width: 50px;
-    min-width: 20px;
-    height: 50px;
-    min-height: 20px;
-    margin-right: 0.3rem;
+    }
+    main .containerPainel .containerCards #containerIcon2 {
+        width: 50px;
+        min-width: 20px;
+        height: 50px;
+        min-height: 20px;
+        margin-right: 0.3rem;
 
-    /*00A042*/
-}
-main .containerPainel .containerCards #containerIcon3 {
-    width: 50px;
-    min-width: 20px;
-    height: 50px;
-    min-height: 20px;
-    margin-right: 0.3rem;
+        /*00A042*/
+    }
+    main .containerPainel .containerCards #containerIcon3 {
+        width: 50px;
+        min-width: 20px;
+        height: 50px;
+        min-height: 20px;
+        margin-right: 0.3rem;
 
-    /*00A042*/
-}
-main .containerPainel .containerCards .containerInfo {
-    width: fit-content;
-    height: fit-content;
-    min-width: none ;
-    min-height: none ;
-    flex-wrap: wrap;
-    
-}
+        /*00A042*/
+    }
+    main .containerPainel .containerCards .containerInfo {
+        width: fit-content;
+        height: fit-content;
+        min-width: none ;
+        min-height: none ;
+        flex-wrap: wrap;
+        
+    }
 }

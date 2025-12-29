@@ -142,24 +142,30 @@ main .containerButton svg{
 
 }
 @media (max-width: 645px) {
-main .containerPainel .containerCards #containerIcon1 {
-    width: 50px;
-    height: 50px;
-    margin-right: 0.5rem;
+    main .containerPainel .containerCards #containerIcon1 {
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
 
+    }
+    main .containerPainel .containerCards #containerIcon2 {
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+    }
 }
-main .containerPainel .containerCards #containerIcon2 {
-    width: 50px;
-    height: 50px;
-    margin-right: 0.5rem;
-}
-}
-@media (max-width: 434px) {
-main .containerPainelTitle {
-    width: 90%;
-    text-align: center;
-    justify-content: center;
-}
+@media (max-width: 520px) {
+    main .containerPainelTitle {
+        width: 90%;
+        text-align: center;
+        justify-content: center;
+    }
+    main .containerPainel{
+        height: 250px;
+    }
+    main .containerPainel .containerCards{
+        height: 90px;
+    }
 }
 
 @media (max-width: 300px) {
