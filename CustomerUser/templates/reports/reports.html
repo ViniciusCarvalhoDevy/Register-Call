@@ -13,25 +13,25 @@
         <section class="containerPainelTitle" id="containerPainelTitle">
             <h1 class="titlePainel" id="titlePainel">Relatórios de Chamandas</h1>
         </section>
-        <section class="filter" id="filter">
-            <input type="date" name="filterDate" id="filterDate">
-            <select name="filterDemands"  id="">
-                <option value="" disabled selected>Selecione a Demanda</option>
+        <form method="get" class="filter" id="filter">
+            <input type="date" name="filterDate" value="{{dateFilter}}" id="filterDate">
+            <select name="filterDemands"  id="filterDemands">
+                <option value="" selected>Selecione a Demanda</option>
                 {% for demand in demands %}
-                    <option value="{{demand.id}}">{{demand.name}} - {{demand.description}}</option>
+                    <option value="{{demand.id}}" {% if filterDemands == demand.id|stringformat:"s" %}selected{% endif %}>{{demand.name}} - {{demand.description}}</option>
                 {% endfor %}
             </select>
-            <select name="filterCompany"  id="">
-                <option value="" disabled selected>Selecione o Cliente</option>
+            <select name="filterCompany"  id="filterCompany">
+                <option value="" selected>Selecione o Cliente</option>
                 {% for company in companys %}
-                    <option value="{{company.id}}">{{company.name}}</option>
+                    <option value="{{company.id}}" {% if filterCompany == company.id|stringformat:"s" %}selected{% endif %}>{{company.name}}</option>
                 {% endfor %}
             </select>
-        <button class="btnSeach ">Pesquisar</button>
-        </section>
+        <input class="btnSeach" id="btnSeach" type="submit" value="Pesquisar">
+        </form>
         <section class="containerPainel" id="containerPainel">
 
-            <div class="containerCards">
+            <div class="containerCards" id="containerCards1">
                 <div class="containerInfo" id="containerInfo">
                     <span class="infoTitle" id="infoTitle">
                        Chamadas no Período
@@ -39,7 +39,7 @@
                     <span class="info" id="info">0{{qtdCalls}}</span>
                 </div>
             </div>
-            <div class="containerCards"> 
+            <div class="containerCards" id="containerCards2"> 
                     <div class="containerInfo" id="containerInfo">
                         <span class="infoTitle" id="infoTitle">
                             Ganhos no Período
@@ -48,8 +48,8 @@
                     </div>
             </div>
         </section>
-        <section class="tableReports" id="tableReports">
-            <table class="table">
+        <section class="tableReports table-responsive" id="tableReports">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
@@ -65,19 +65,19 @@
                     {% if calls is not None%}
                         {% for call in calls %}
                             <tr>
-                            <th scope="row">1</th>
-                            <td>{{call.dateCall}}</td>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{call.dateCall|date:"d/m/Y"}}</td>
                             <td>{{call.company}}</td>
                             <td>{{call.collaborator}}</td>                       
                             <td>{{call.demand.name}} - {{call.demand.description}}</td>
-                            <td>{{call.value}}</td>
+                            <td>R$ {{call.value|floatformat:2}}</td>
                             <td>{{call.observation}}</td>
                             </tr>
                             <tr>
                         {% endfor %}
                     {% else %}
-                        <tr>
-                            <td colspan="6">Nenhum chamado encontrado para os filtros selecionados.</td>
+                        <tr class="noData">
+                            <td colspan="7">Nenhum chamado encontrado para os filtros selecionados.</td>
                         </tr>
                     {% endif %}
                 </tbody>

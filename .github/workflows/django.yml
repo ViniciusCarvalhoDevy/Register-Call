@@ -1,0 +1,50 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "demand" ]
+  pull_request:
+    branches: [ "demand" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        # Django 5.2+ requer Python 3.10, 3.11 ou 3.12
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        # Cache ajuda a acelerar as próximas execuções
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install django  # Garante que o Django esteja presente caso não esteja no requirements
+
+    - name: Lint with flake8 (Opcional)
+      run: |
+        pip install flake8
+        # Para o build se houver erros de sintaxe Python ou símbolos indefinidos
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Saída amigável para avisos de estilo
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Run Migrations
+      run: |
+        python manage.py migrate
+
+    - name: Run Tests
+      run: |
+        # Executa os testes para seus apps específicos: Company, Demand, CustomerUser
+        python manage.py test
