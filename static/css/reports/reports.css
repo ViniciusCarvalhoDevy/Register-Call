@@ -1,0 +1,191 @@
+@import url("/static/global/navBar.css");
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+svg{
+    background: none;
+}
+body {
+    background: none;
+}
+
+/* main*/
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: calc(100vh - 70px); /* Ajusta a altura para preencher a tela menos a altura da navbar */
+    background-color: #f0f4f8;
+    padding-top: 2rem;
+}
+main .containerPainelTitle {
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+main .containerPainel{
+    width: 50%;
+    height: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+main .containerPainel .containerCards{
+    width: 50%;
+    min-width: 150px;
+    max-width: 460px;
+    height: 50%;
+    display: flex;
+    padding-left: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    min-width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+main .containerPainel .containerCards .containerInfo {
+    width: 70%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    
+}
+main .containerPainel .containerCards .containerInfo .infoTitle{
+    font-size: medium;
+    color: rgb(99, 99, 99);
+}
+main .containerPainel .containerCards .containerInfo .info{
+    font-size: x-large;
+}
+
+
+main .filter{
+        width: 50%;
+        min-width: 150px;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        height: fit-content;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-radius: 10px;
+        min-width: 200px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-top: 2rem;
+}
+main .filter select{
+    width: 25%;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    background-color: white;
+    color: #4338CA;
+    border: 1px solid #4338CA;
+    cursor: pointer;
+
+}
+
+main .filter input{
+    width: 25%;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    background-color: white;
+    color: #4338CA;
+    border: 1px solid #4338CA;
+
+}
+
+main .filter button{
+    width: 10%;
+    height: 35px;
+    border-radius: 40px;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4338CA;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s,transform 0.2s;
+    cursor: pointer;
+}
+main .filter button:hover{
+    background-color: #fff;
+    color: #4338CA;
+    border: 1px solid #4338CA;
+    transition: all 0.6s ease-in-out;
+}
+
+main .tableReports{
+    width: 50%;
+    min-width: 300px;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+@media (max-width: 1037px) {
+
+    main .containerPainel{
+        width: 90%;
+    }
+
+}
+@media (max-width: 645px) {
+main .containerPainel .containerCards #containerIcon1 {
+    width: 50px;
+    height: 50px;
+    margin-right: 0.5rem;
+
+}
+main .containerPainel .containerCards #containerIcon2 {
+    width: 50px;
+    height: 50px;
+    margin-right: 0.5rem;
+}
+}
+@media (max-width: 434px) {
+main .containerPainelTitle {
+    width: 90%;
+    text-align: center;
+    justify-content: center;
+}
+}
+
+@media (max-width: 300px) {
+    main {
+        width: 300px;
+    }
+
+}
