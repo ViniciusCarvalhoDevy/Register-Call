@@ -238,7 +238,7 @@ main .tableReports{
 
 }
 
-@media (max-width: 463px) {
+@media (max-width: 466px) {
 main .containerPainelTitle {
     width: 90%;
     text-align: center;
@@ -247,7 +247,12 @@ main .containerPainelTitle {
     main .containerPainel  #containerCards1 {
     margin-right: 0.1rem;   
     }
-
+main .filter{
+    flex-wrap: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 }
 @media (max-width: 441px) {
