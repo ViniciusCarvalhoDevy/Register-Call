@@ -27,7 +27,11 @@
                     <option value="{{company.id}}" {% if filterCompany == company.id|stringformat:"s" %}selected{% endif %}>{{company.name}}</option>
                 {% endfor %}
             </select>
-        <input class="btnSeach" id="btnSeach" type="submit" value="Pesquisar">
+            <div class="btnSeachContainer" id="btnSeachContainer">
+                 <input class="btnSeach" id="btnSeach" type="submit" value="Pesquisar">
+            </div>
+            
+       
         </form>
         <section class="containerPainel" id="containerPainel">
 
